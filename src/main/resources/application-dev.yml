@@ -12,5 +12,5 @@ spring:
 # 日志配置
 logging:
   level:
-    com.pangmutou. DEBUG
+    com.pangmutou: DEBUG
     com.baomidou.mybatisplus: DEBUG
