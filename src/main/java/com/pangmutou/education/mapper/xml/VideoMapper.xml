@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pangmutou.education.mapper.VideoMapper">
+
+    <!-- 关联查询sql -->
+    <sql id="relSelect">
+        SELECT a.*
+        FROM edu_video a
+        <where>
+            <if test="page!=null and page.pageData!=null">
+				<if test="page.pageData.id != null">
+					AND a.id = #{page.pageData.id}
+				</if>
+				<if test="page.pageData.courseId != null">
+                    AND a.course_id LIKE CONCAT('%', #{page.pageData.courseId}, '%')
+				</if>
+				<if test="page.pageData.chapterId != null">
+                    AND a.chapter_id LIKE CONCAT('%', #{page.pageData.chapterId}, '%')
+				</if>
+				<if test="page.pageData.title != null">
+                    AND a.title LIKE CONCAT('%', #{page.pageData.title}, '%')
+				</if>
+				<if test="page.pageData.videoSourceId != null">
+                    AND a.video_source_id LIKE CONCAT('%', #{page.pageData.videoSourceId}, '%')
+				</if>
+				<if test="page.pageData.videoOriginalName != null">
+                    AND a.video_original_name LIKE CONCAT('%', #{page.pageData.videoOriginalName}, '%')
+				</if>
+				<if test="page.pageData.sort != null">
+					AND a.sort = #{page.pageData.sort}
+                </if>
+				<if test="page.pageData.playCount != null">
+                    AND a.play_count LIKE CONCAT('%', #{page.pageData.playCount}, '%')
+				</if>
+				<if test="page.pageData.isFree != null">
+                    AND a.is_free LIKE CONCAT('%', #{page.pageData.isFree}, '%')
+				</if>
+				<if test="page.pageData.duration != null">
+                    AND a.duration LIKE CONCAT('%', #{page.pageData.duration}, '%')
+				</if>
+				<if test="page.pageData.status != null">
+                    AND a.status LIKE CONCAT('%', #{page.pageData.status}, '%')
+				</if>
+				<if test="page.pageData.size != null">
+                    AND a.size LIKE CONCAT('%', #{page.pageData.size}, '%')
+				</if>
+				<if test="page.pageData.version != null">
+                    AND a.version LIKE CONCAT('%', #{page.pageData.version}, '%')
+				</if>
+				<if test="page.pageData.gmtCreate != null">
+                    AND a.gmt_create LIKE CONCAT('%', #{page.pageData.gmtCreate}, '%')
+				</if>
+				<if test="page.pageData.gmtModified != null">
+                    AND a.gmt_modified LIKE CONCAT('%', #{page.pageData.gmtModified}, '%')
+				</if>
+            </if>
+        </where>
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="listPage" resultType="com.pangmutou.education.entity.Video">
+        <include refid="relSelect"></include>
+    </select>
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultType="com.pangmutou.education.entity.Video">
+        <include refid="relSelect"></include>
+    </select>
+
+</mapper>

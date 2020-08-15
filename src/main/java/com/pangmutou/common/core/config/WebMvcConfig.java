@@ -1,9 +1,12 @@
 package com.pangmutou.common.core.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.FormContentFilter;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
 
     /**
      * 支持跨域访问
@@ -30,5 +34,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public FormContentFilter httpPutFormContentFilter() {
         return new FormContentFilter();
     }
+
+
+
 
 }

@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 @MapperScan("com.pangmutou.**.mapper")
 @SpringBootApplication
-public class EasyWebApplication {
+public class DZFWApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EasyWebApplication.class, args);
+        SpringApplication.run(DZFWApplication.class, args);
     }
 
 }

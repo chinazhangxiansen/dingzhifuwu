@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pangmutou.education.mapper.TeacherMapper">
+
+    <!-- 关联查询sql -->
+    <sql id="relSelect">
+        SELECT a.*
+        FROM edu_teacher a
+        <where>
+            <if test="page!=null and page.pageData!=null">
+				<if test="page.pageData.id != null">
+					AND a.id = #{page.pageData.id}
+				</if>
+				<if test="page.pageData.name != null">
+                    AND a.name LIKE CONCAT('%', #{page.pageData.name}, '%')
+				</if>
+				<if test="page.pageData.intro != null">
+                    AND a.intro LIKE CONCAT('%', #{page.pageData.intro}, '%')
+				</if>
+				<if test="page.pageData.career != null">
+                    AND a.career LIKE CONCAT('%', #{page.pageData.career}, '%')
+				</if>
+				<if test="page.pageData.level != null">
+					AND a.level = #{page.pageData.level}
+                </if>
+				<if test="page.pageData.avatar != null">
+                    AND a.avatar LIKE CONCAT('%', #{page.pageData.avatar}, '%')
+				</if>
+				<if test="page.pageData.sort != null">
+					AND a.sort = #{page.pageData.sort}
+                </if>
+				<if test="page.pageData.isDeleted != null">
+                    AND a.is_deleted LIKE CONCAT('%', #{page.pageData.isDeleted}, '%')
+				</if>
+				<if test="page.pageData.gmtCreate != null">
+                    AND a.gmt_create LIKE CONCAT('%', #{page.pageData.gmtCreate}, '%')
+				</if>
+				<if test="page.pageData.gmtModified != null">
+                    AND a.gmt_modified LIKE CONCAT('%', #{page.pageData.gmtModified}, '%')
+				</if>
+            </if>
+        </where>
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="listPage" resultType="com.pangmutou.education.entity.Teacher">
+        <include refid="relSelect"></include>
+    </select>
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultType="com.pangmutou.education.entity.Teacher">
+        <include refid="relSelect"></include>
+    </select>
+
+</mapper>

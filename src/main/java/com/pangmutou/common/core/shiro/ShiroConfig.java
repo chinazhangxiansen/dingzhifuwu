@@ -46,13 +46,16 @@ public class ShiroConfig {
         // 拦截配置
         Map<String, String> filterChainDefinitions = new LinkedHashMap<>();
         filterChainDefinitions.put("/assets/**", "anon");
+        filterChainDefinitions.put("/static/**", "anon");
         filterChainDefinitions.put("/favicon.ico", "anon");
         filterChainDefinitions.put("/api/**", "anon");
         filterChainDefinitions.put("/error", "anon");
         filterChainDefinitions.put("/login", "anon");
+        filterChainDefinitions.put("/web/index", "anon");
         filterChainDefinitions.put("/logout", "logout");
         //filterChainDefinitions.put("/**", "slf,authc");
         filterChainDefinitions.put("/**", "slf,user");  // 记住密码也能访问
+        filterChainDefinitions.put("/web/**", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitions);
         return shiroFilter;
     }
