@@ -36,7 +36,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
         // 登录配置
-        shiroFilter.setLoginUrl("/login");
+        shiroFilter.setLoginUrl("/web/index");
         shiroFilter.setSuccessUrl("/");
         shiroFilter.setUnauthorizedUrl("/error?code=403");
         // 自定义过滤器
@@ -51,7 +51,7 @@ public class ShiroConfig {
         filterChainDefinitions.put("/api/**", "anon");
         filterChainDefinitions.put("/error", "anon");
         filterChainDefinitions.put("/login", "anon");
-        filterChainDefinitions.put("/web/index", "anon");
+        filterChainDefinitions.put("/web/**", "anon");
         filterChainDefinitions.put("/logout", "logout");
         //filterChainDefinitions.put("/**", "slf,authc");
         filterChainDefinitions.put("/**", "slf,user");  // 记住密码也能访问
