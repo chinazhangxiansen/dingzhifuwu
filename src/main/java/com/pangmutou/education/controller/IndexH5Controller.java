@@ -15,13 +15,12 @@ public class IndexH5Controller {
 
     @RequestMapping("star-teacher")
     public String teacher(Model model){
-        return "front/h5/star-star-teacher.html";
+        return "front/h5/star-teacher.html";
     }
 
     @RequestMapping("reference-room")
     public String book(Model model){
         return "front/h5/reference-room.html";
     }
-
 
 }
