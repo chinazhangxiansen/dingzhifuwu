@@ -11,6 +11,7 @@
 
 	<link rel="stylesheet" href="/assets/css/sm.min.css">
 	<link rel="stylesheet" href="/assets/css/sm-extend.min.css">
+	<link rel="stylesheet" href="/assets/css/menudown.css">
 	<script>
 		(function browserRedirect(){
 			var sUserAgent = navigator.userAgent.toLowerCase();
@@ -72,53 +73,78 @@
 			</a>
 		</nav>
 		<div class="content">
-			<div class="info">
-				<select class="infoselect" style="width: 30%" id="s_province" name="s_province">
-					<option>请选择学校</option>
-					<option>中国科技大学</option>
-					<option>合肥工业大学</option>
-					<option>安徽大学</option>
-				</select>
-				<select class="infoselect" style="width: 30%" id="s_city" name="s_city" >
-					<option>请选择学院</option>
-					<option>材料科学与工程学院</option>
-					<option>数学学院</option>
-				</select>
-				<select class="infoselect" style="width: 30%" id="s_county" name="s_county">
-					<option>请选择专业</option>
-					<option>材料科学与工程</option>
-					<option>应用数学</option>
-				</select>
+			<dl class="topmenu">
+				<dt>
+					<div class="selectlist">
+						<div class="select_textdiv">
+							<input type="hidden" value=""/>
+							<p class="s_text">地区</p><span class="down"><img src="/assets/img/down.png"></span>
+						</div>
+						<div class="select_textul">
+							<ul class="select_first_ul">
+								<li onclick="querySchool('10')">中国</li>
+								<li onclick="querySchool('11')">北京</li>
+								<li onclick="querySchool('12')">天津</li>
+								<li onclick="querySchool('13')">河北</li>
+								<li onclick="querySchool('14')">山西</li>
+								<li onclick="querySchool('15')">内蒙古</li>
+								<li onclick="querySchool('21')">辽宁</li>
+								<li onclick="querySchool('22')">吉林</li>
+								<li onclick="querySchool('23')">黑龙江</li>
+								<li onclick="querySchool('31')">上海</li>
+								<li onclick="querySchool('32')">江苏</li>
+								<li onclick="querySchool('33')">浙江</li>
+								<li onclick="querySchool('34')">安徽</li>
+								<li onclick="querySchool('35')">福建</li>
+								<li onclick="querySchool('36')">江西</li>
+								<li onclick="querySchool('37')">山东</li>
+								<li onclick="querySchool('41')">河南</li>
+								<li onclick="querySchool('42')">湖北</li>
+								<li onclick="querySchool('43')">湖南</li>
+								<li onclick="querySchool('44')">广东</li>
+								<li onclick="querySchool('45')">广西</li>
+								<li onclick="querySchool('46')">海南</li>
+								<li onclick="querySchool('50')">重庆</li>
+								<li onclick="querySchool('51')">四川</li>
+								<li onclick="querySchool('52')">贵州</li>
+								<li onclick="querySchool('53')">云南</li>
+								<li onclick="querySchool('54')">西藏</li>
+								<li onclick="querySchool('61')">陕西</li>
+								<li onclick="querySchool('62')">甘肃</li>
+								<li onclick="querySchool('63')">青海</li>
+								<li onclick="querySchool('64')">宁夏</li>
+								<li onclick="querySchool('65')">新疆</li>
+							</ul>
+						</div>
+					</div>
+				</dt>
+				<dt>
+					<div class="selectlist">
+						<div class="select_textdiv">
+							<input type="hidden" value=""/>
+							<p class="s_text">学校/组织</p><span class="down"><img src="/assets/img/down.png"></span>
+						</div>
+						<div class="select_textul">
+							<ul class="select_first_ul" id="Sort-Sort">
 
-			</div>
-			<div class="page-index">
-				<div class="card">
-					<div style="background:#212177;color: #ffffff;" valign="bottom" class="card-header color-white no-border">旅途的山</div>
-					<div class="card-content">
-						<div class="card-content-inner">
-							<p class="color-gray">发表于 2015/01/15</p>
-							<p>此处是内容...</p>
+							</ul>
 						</div>
 					</div>
-					<div class="card-footer">
-						<a href="#" class="link">赞</a>
-						<a href="#" class="link">更多</a>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background:#212177;color: #ffffff;" valign="bottom" class="card-header color-white no-border">旅途的山</div>
-					<div class="card-content">
-						<div class="card-content-inner">
-							<p class="color-gray">发表于 2015/01/15</p>
-							<p>此处是内容...</p>
+				</dt>
+				<dt>
+					<div class="selectlist">
+						<div class="select_textdiv">
+							<input type="hidden" value=""/>
+							<p class="s_text">专业</p><span class="down"><img src="/assets/img/down.png"></span>
+						</div>
+						<div class="select_textul">
+							<ul class="select_first_ul">
+
+							</ul>
 						</div>
 					</div>
-					<div class="card-footer">
-						<a href="#" class="link">赞</a>
-						<a href="#" class="link">更多</a>
-					</div>
-				</div>
-			</div>
+				</dt>
+			</dl>
 		</div>
 	</div>
 </div>
@@ -127,5 +153,34 @@
 <script src='/assets/js/sm.js'></script>
 <script src='/assets/js/sm-extend.js'></script>
 <script src="/assets/js/base.js"></script>
+<script src="/assets/js/menudown.js"></script>
+<script>
+	// initProvince();
+	//初始化省份数据
+	function initProvince(){
+		var menu_data=[{"code":"34","name":"安徽","pcode":"0"},{"code":"3401","name":"合肥","pcode":"34"},{"code":"340101","name":"中国科技大学","pcode":"3401"}];
+		//筛选level=1的对象
+		var menu_node1 = menu_data.filter(function (e) { return e.pcode == 0; });
+		//遍历结果对象
+		for (var i = 0; i < menu_node1.length; i++) {
+			console.log(menu_node1[i].name);
+		}
+	}
+
+	function querySchool(pcode) {
+		var menu_data=[{"code":"34","name":"安徽","pcode":"0"},{"code":"3401","name":"合肥","pcode":"34"},{"code":"340101","name":"中国科技大学","pcode":"3401"}];
+		//筛选level=1的对象
+		var menu_node1 = menu_data.filter(function (e) { return e.pcode == pcode; });
+		//遍历结果对象
+		var schoolStr = "";
+		$("#Sort-Sort").html("");
+		for (var i = 0; i < menu_node1.length; i++) {
+			console.log(menu_node1[i].name);
+			schoolStr = schoolStr + "<li onclick=\"Categorytw(this)\">"+menu_node1[i].name +"</li>";
+		}
+		alert(schoolStr);
+		$("#Sort-Sort").html(schoolStr);
+	}
+</script>
 </body>
 </html>
