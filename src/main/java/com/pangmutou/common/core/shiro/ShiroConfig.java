@@ -52,6 +52,7 @@ public class ShiroConfig {
         filterChainDefinitions.put("/error", "anon");
         filterChainDefinitions.put("/login", "anon");
         filterChainDefinitions.put("/web/**", "anon");
+        filterChainDefinitions.put("/web/h5/**", "anon");
         filterChainDefinitions.put("/logout", "logout");
         //filterChainDefinitions.put("/**", "slf,authc");
         filterChainDefinitions.put("/**", "slf,user");  // 记住密码也能访问

@@ -1,16 +1,21 @@
 package com.pangmutou.education.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.pangmutou.common.base.BaseController;
+import com.pangmutou.common.core.utils.GsonUtils;
+import com.pangmutou.common.core.utils.JSONUtil;
 import com.pangmutou.common.core.web.PageParam;
 import com.pangmutou.common.core.web.PageResult;
 import com.pangmutou.common.system.entity.Menu;
 import com.pangmutou.education.entity.Reference;
 import com.pangmutou.education.service.ReferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,11 +37,22 @@ public class IndexH5Controller extends BaseController {
     }
 
     @RequestMapping("reference-room")
-    public String book(Model model, HttpServletRequest request){
+    public String book(){
+        return "front/h5/reference-room.html";
+    }
+
+    @ResponseBody
+    @RequestMapping("reference-list")
+    public String bookList(Model model, HttpServletRequest request){
         PageParam<Reference> pageParam = new PageParam<Reference>(request);
         pageParam.setDefaultOrder(new String[]{"id"}, null);
         PageResult<Reference> result =  referenceService.listPage(pageParam);
-        return "front/h5/reference-room.html";
+        return GsonUtils.toJsonString(result.getData());
+    }
+
+    @RequestMapping("school-page")
+    public String schoolPage(){
+        return "front/h5/school_list.html";
     }
 
     @RequestMapping(value = "user-login",method = RequestMethod.GET)

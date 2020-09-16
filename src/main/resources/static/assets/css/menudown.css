@@ -1,29 +1,5 @@
 @CHARSET "UTF-8";
 /*默认样式*/
-html {
-	font-size: 4vw;
-	height:100vh;
-}
-* {
-	margin: 0;
-	padding: 0;
-	outline: none;
-}
-*:not(input, textarea) {
-	-webkit-
-	-callout: inherit;
-	-webkit-user-select: auto;
-}
-body {
-	font-family: "Arial", "微软雅黑", "宋体";
-	font-size: 1rem;
-	color: #333;
-	-webkit-
-	-callout: inherit;
-	-webkit-user-select: auto;
-	margin: auto;
-	height:100vh;
-}
 a {
 	color: #54d09e;
 	text-decoration: none;
