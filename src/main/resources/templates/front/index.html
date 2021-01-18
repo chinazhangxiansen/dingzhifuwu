@@ -206,15 +206,15 @@
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img style="width: 100%;height: 500px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597329957481&di=0585236f72f83e69b62c01ea4309bd7a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F00%2F07%2F105781ac337e4d6.jpg" alt="...">
+					<img style="width: 100%;height: 500px" src="http://cdn.zhxszhyx.top/04.jpg" alt="...">
 					<div class="carousel-caption">
-						<span style="font-size: 60px;color: #0C0C0C;">路漫漫其修遠兮  吾將上下而求索</span>
+						<span style="font-size: 40px;color: #0C0C0C;">路漫漫其修遠兮  吾將上下而求索</span>
 					</div>
 				</div>
 				<div class="item">
-					<img style="width: 100%;height: 500px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597329957480&di=b2376314291667e472b79443306d12a9&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F00%2F07%2F105781f71d9ae00.jpg" alt="...">
+					<img style="width: 100%;height: 500px" src="http://cdn.zhxszhyx.top/05.jpg" alt="...">
 					<div class="carousel-caption">
-						<span style="font-size: 60px;color: #0C0C0C;">没有尽力而为 只有全力以赴</span>
+						<span style="font-size: 40px;color: #0C0C0C;">没有尽力而为 只有全力以赴</span>
 					</div>
 				</div>
 			</div>
@@ -254,31 +254,12 @@
 			<div class="page-header" style="text-align: center;">
 				<h1>精品课程</h1>
 			</div>
+			<input type="hidden" id="courseList" value='${courseList}'/>
 			<!-- 简介 -->
 			<div class="row" id="class">
 				<div class="col-md-3" style="text-align: center;">
 					<img class="img-circle" src="/assets/images/1.png" alt="chrome">
 					<h4>陈正康四级VIP精品班</h4>
-					<p>陈正康四级VIP精品班。</p>
-<!--					<p><a class="btn btn-default" href="#" role="button">点我下载</a></p>-->
-				</div>
-				<div class="col-md-3" style="text-align: center;">
-					<img class="img-circle" src="/assets/images/2.png" alt="firefox">
-					<h4>从0到20000+词汇速记营</h4>
-					<p>从0到20000+词汇速记营。</p>
-<!--					<p><a class="btn btn-default" href="#" role="button">点我下载</a></p>-->
-				</div>
-				<div class="col-md-3" style="text-align: center;">
-					<img class="img-circle" src="/assets/images/3.png" alt="safari">
-					<h4>计算机二级office极速通关</h4>
-					<p>计算机二级office极速通关。</p>
-<!--					<p><a class="btn btn-default" href="#" role="button">点我下载</a></p>-->
-				</div>
-				<div class="col-md-3" style="text-align: center;">
-					<img class="img-circle" src="/assets/images/4.png" alt="safari">
-					<h4>高等数学17节课</h4>
-					<p>高等数学17节课。</p>
-<!--					<p><a class="btn btn-default" href="#" role="button">点我下载</a></p>-->
 				</div>
 			</div>
 		</div>
@@ -304,7 +285,7 @@
 <!--				</div>-->
 			</div>
 			<p align="center" style="margin-top: 20px;color:#878B91;">
-				Copyright© 2019 zhangxiansen.cn.All Rights Reserved. 皖ICP备18010501号-2
+				<a target="_blank" href="https://beian.miit.gov.cn">Copyright© 2020 zhangxiansen.com.All Rights Reserved. 皖ICP备18010501号-3</a>
 			</p>
 		</footer>
 	</body>
@@ -313,6 +294,21 @@
 	<script>
 		$('.carousel').carousel({
 			interval: 2000
-		})
+		});
+		initCourse();
+
+		function initCourse(){
+			var data = $("#courseList").val();
+			dataJson = JSON.parse(data);
+			var dataArea = $("#class");
+			dataArea.html("");
+			for (var i = 0; i <dataJson.length ; i++) {
+				dataArea.append("<div class=\"col-md-3\" style=\"text-align: center;\">" +
+						"<img class=\"img-circle\" src='"+dataJson[i].cover+"'alt=\"chrome\">" +
+						"<h4>"+dataJson[i].title+"</h4>\n" +
+						"</div>");
+			}
+		}
+
 	</script>
 </html>

@@ -171,7 +171,8 @@
 					</ul>
 				</div>
 			</div>
-			<div class="page-index">
+			<input type="hidden" id="courseList" value='${courseList}'/>
+			<div class="page-index" id="class">
 				<div class="card">
 					<div style="background:#F0F0F0" valign="bottom" class="card-header color-white no-border">旅途的山</div>
 					<div class="card-content">
@@ -209,7 +210,24 @@
 <script src="/assets/js/base.js"></script>
 <script src="/assets/js/slideshow.js"></script>
 <script>
+	initCourse();
 
+	function initCourse(){
+		var data = $("#courseList").val();
+		dataJson = JSON.parse(data);
+		var dataArea = $("#class");
+		dataArea.html("");
+		for (var i = 0; i <dataJson.length ; i++) {
+			dataArea.append("<div class=\"card\">\n" +
+					"<div class=\"card-content\">\n" +
+					"<div class=\"card-content-inner\">\n" +
+					"<img class=\"img-circle\" src='"+dataJson[i].cover+"'alt=\"chrome\">" +
+					"<h4 style='text-align: center;'>"+dataJson[i].title+"</h4>\n" +
+					"</div>\n" +
+					"</div>\n" +
+					"</div>");
+		}
+	}
 </script>
 </body>
 </html>

@@ -7,7 +7,9 @@ import com.pangmutou.common.core.utils.JSONUtil;
 import com.pangmutou.common.core.web.PageParam;
 import com.pangmutou.common.core.web.PageResult;
 import com.pangmutou.common.system.entity.Menu;
+import com.pangmutou.education.entity.Course;
 import com.pangmutou.education.entity.Reference;
+import com.pangmutou.education.service.CourseService;
 import com.pangmutou.education.service.ReferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.GsonBuilderUtils;
@@ -25,9 +27,16 @@ public class IndexH5Controller extends BaseController {
 
     @Autowired
     ReferenceService referenceService;
+    @Autowired
+    CourseService courseService;
 
     @RequestMapping("index")
-    public String index(Model model){
+    public String index(Model model,HttpServletRequest request){
+        PageParam<Course> pageParam = new PageParam<Course>(request);
+        pageParam.setSize(4L);
+        System.out.println("返回值>>>>"+ JSON.toJSONString(courseService.listPage(pageParam).getData()));
+        model.addAttribute("courseList", JSON.toJSONString(courseService.listPage(pageParam).getData()));
+
         return "front/h5/index.html";
     }
 

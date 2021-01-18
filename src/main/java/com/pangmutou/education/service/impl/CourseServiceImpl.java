@@ -21,6 +21,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public PageResult<Course> listPage(PageParam<Course> page) {
         List<Course> records = baseMapper.listPage(page);
+        System.out.println(">>>>>"+records.toString());
         return new PageResult<>(records, page.getTotal());
     }
 
